@@ -1,15 +1,14 @@
 ---
+import BaseHead from "../components/BaseHead.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>My Astro Site</h1>
-	</body>
+  <head>
+    <BaseHead title="Tahereh Mahzoon" description="My personal Blog" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
+  </head>
+  <body>
+    <h1 class="text-5xl">My Astro Site</h1>
+  </body>
 </html>

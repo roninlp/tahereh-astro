@@ -1,0 +1,41 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+
+const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
+  (a, b) =>
+    new Date(b.frontmatter.publishDate).valueOf() -
+    new Date(a.frontmatter.publishDate).valueOf()
+);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title="Blog" description="My blog" />
+  </head>
+  <body>
+    <main>
+      <content>
+        <ul>
+          {
+            posts.map((post) => (
+              <>
+                <time datetime={post.frontmatter.publishDate}>
+                  {new Date(post.frontmatter.publishDate).toLocaleDateString(
+                    "en-us",
+                    {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    }
+                  )}
+                </time>
+                <a href={post.url}>{post.frontmatter.title}</a>
+              </>
+            ))
+          }
+        </ul>
+      </content>
+    </main>
+  </body>
+</html>
