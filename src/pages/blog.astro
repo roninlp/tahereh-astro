@@ -1,5 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import { Image } from "@astrojs/image/components";
 
 const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
   (a, b) =>
@@ -14,24 +16,33 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
     <BaseHead title="Blog" description="My blog" />
   </head>
   <body>
+    <Header />
     <main>
       <content>
         <ul>
           {
             posts.map((post) => (
-              <>
-                <time datetime={post.frontmatter.publishDate}>
-                  {new Date(post.frontmatter.publishDate).toLocaleDateString(
-                    "en-us",
-                    {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    }
-                  )}
-                </time>
+              <div>
+                <Image
+                  width={720}
+                  height={360}
+                  src={post.frontmatter.heroImage}
+                  alt=""
+                />
                 <a href={post.url}>{post.frontmatter.title}</a>
-              </>
+                <div>
+                  <time datetime={post.frontmatter.publishDate}>
+                    {new Date(post.frontmatter.publishDate).toLocaleDateString(
+                      "en-us",
+                      {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      }
+                    )}
+                  </time>
+                </div>
+              </div>
             ))
           }
         </ul>
