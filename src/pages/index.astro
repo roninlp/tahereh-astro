@@ -10,5 +10,16 @@ import BaseHead from "../components/BaseHead.astro";
   </head>
   <body>
     <h1 class="text-5xl">My Astro Site</h1>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
   </body>
 </html>
