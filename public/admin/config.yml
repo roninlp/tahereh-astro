@@ -10,7 +10,7 @@ public_folder: "/assets"
 collections:
   - name: "blog"
     label: "blog"
-    folder: "posts/blog"
+    folder: "src/pages/blog"
     create: true
     slug: "{{slug}}"
     fields:
